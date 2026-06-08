@@ -1,4 +1,4 @@
-package com.upskillJ.c03.examples;
+package com.upskillJ.c03.firstClass.examples;
 
 import org.junit.jupiter.api.Test;
 
