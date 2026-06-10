@@ -14,11 +14,9 @@ public class UserTest {
         assertEquals("bob",user.getUsername(),"default username expected");
         assertEquals("troll",user.getPassword(),"default password expected");
 
-/*
-        User auser = new User();
-        auser.username = "bugsy";
-        assertEquals("bugsy", auser.username, "not the default username expected");
-*/
+//        User auser = new User();
+//        auser.username = "bugsy";
+//        assertEquals("bugsy", auser.username, "not the default username expected");
     }
 
     @Test
