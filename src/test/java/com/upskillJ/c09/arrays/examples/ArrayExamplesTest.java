@@ -1,6 +1,8 @@
 package com.upskillJ.c09.arrays.examples;
 
 import com.upskillJ.domainentities.User;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -10,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ArrayExamplesTest {
 
     @Test
+    @DisplayName("Create user objects in an array")
     public void createUsersInArray(){
         User[] users = new User[100];
         for(int i = 0; i < users.length; i++){
@@ -19,6 +22,7 @@ public class ArrayExamplesTest {
     }
 
     @Test
+    @DisplayName("sort the given arrays")
     public void sortArrays(){
         String[] workdays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
         Arrays.sort(workdays);
@@ -30,6 +34,7 @@ public class ArrayExamplesTest {
     }
 
     @Test
+    @DisplayName("create a ragged array based on the print2DIntArray method")
     public void checkRaggedArray(){
         int [][] multi = new int[16][];
         for(int i = 0; i < multi.length; i++) {
