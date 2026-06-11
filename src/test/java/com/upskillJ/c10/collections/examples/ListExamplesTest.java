@@ -5,88 +5,87 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class ListExamplesTest {
 
+    /**
+     * List Allows:
+     * 1. storing of duplicate values
+     * 2. retains elements in the order added
+     * 3. adding specific elements in a specific position in the list
+     */
+
     @Test
-    @DisplayName("Examples of various List methods on a collection of Strings")
-    public void listMethods() {
+    @DisplayName("Examples of methods in the List Interface")
+    public void methodsInListExamplesTest() {
+        List<String> days = new ArrayList<>();
 
-        //Define Collection of Workdays
+        days.add("Monday");
+        days.add("Tuesday");
+        days.add("Wednesday");
 
-        Collection<String> workdays = new ArrayList<>();
-        workdays.add("Monday");
-        workdays.add("Tuesday");
-        workdays.add("Wednesday");
-        workdays.add("Thursday");
-        workdays.add("Friday");
+        //get elements in a list
+        assertEquals("Monday", days.get(0));
+        assertEquals("Tuesday", days.get(1));
+        assertEquals("Wednesday", days.get(2));
 
-        assertEquals(5, workdays.size(), "Workdays list should be 5");
+        //remove an element at index
+        days.remove(1);
+        assertEquals("Monday", days.get(0));
+        assertEquals("Wednesday", days.get(1));
 
-        //Define collection of Weekends
+        //add element at specific index
+        days.add(1, "Tuesday");
+        days.add(3, "Thursday");
+        days.add(4, "Friday");
 
-        Collection<String> weekendDays = new ArrayList<>();
-        weekendDays.add("Saturday");
-        weekendDays.add("Sunday");
+        //addAll in a collection at specific index
+        List<String> missingDays = new ArrayList<>();
+        missingDays.add("Saturday");
+        missingDays.add("Funday");
 
-        //Combine the two collections into a new collection of days of the week
-        Collection<String> daysOfWeek = new ArrayList<>();
+        days.addAll(5, missingDays);
+        assertEquals("Funday", days.get(6));
 
-        daysOfWeek.addAll(workdays);
-        daysOfWeek.addAll(weekendDays);
+        //set the element at an index
+        days.set(6, "Sunday");
+        assertEquals("Sunday", days.get(6));
+        assertFalse(days.contains("Funday"));
 
-        assertEquals(7, daysOfWeek.size(), "Days of Week should contain 7 elements");
-
-        // Remove all weekendDays from daysOfWeek
-        daysOfWeek.removeAll(weekendDays);
-        assertTrue(daysOfWeek.containsAll(workdays));
-        assertEquals(5, daysOfWeek.size());
-        assertFalse(daysOfWeek.containsAll(weekendDays));
-
-        // Clear the collection
-        daysOfWeek.clear();
-        assertEquals(0, daysOfWeek.size(), "Days of week should be 0");
-        assertTrue(daysOfWeek.isEmpty(), "Days of week should be empty list");
+        //create subList based on the original List
+        List<String> workdays = days.subList(0, 5);
+        assertEquals("Monday", workdays.get(0));
+        assertEquals("Wednesday", workdays.get(2));
+        assertFalse(workdays.contains("Sunday"));
     }
 
     @Test
-    @DisplayName("Collection amd Manipulation of the User objects")
-    public void userCollection() {
+    @DisplayName("Create and manipulate a List of User objects")
+    public void createAndManipulateListOfUserObjectsTest() {
+        User user1 = new User("user1", "password1");
+        User user2 = new User("user2", "password2");
 
-        Collection<User> users = new ArrayList<>();
-        assertTrue(0 == users.size());
-        assertTrue(users.isEmpty());
+        List<User> users = new ArrayList<>();
 
-        User user1 = new User("username1", "password1");
-        User user2 = new User("username2", "password2");
-
+        //add user to the list
         users.add(user1);
-        users.add(user2);
+        assertEquals("user1", users.get(0).getUsername());
 
-        assertEquals(2, users.size());
-        assertFalse(users.isEmpty());
+        //add user to the front of the list
+        users.add(0, user2);
+        assertEquals("user2", users.get(0).getUsername());
+        assertEquals("user1", users.get(1).getUsername());
 
-        Collection<User> diffUsers = new ArrayList<>();
+        //Assert on the indexOf position of the user objects
+        assertEquals(0, users.indexOf(user2));
+        assertEquals(1, users.indexOf(user1));
 
-        User diffUser1 = new User("username3","password3");
-        User diffUser2 = new User("username4","password4");
-
-        diffUsers.add(diffUser1);
-        diffUsers.add(diffUser2);
-
-        users.addAll(diffUsers);
-        assertTrue(users.containsAll(diffUsers));
-
-        users.removeAll(diffUsers);
-        assertFalse(users.containsAll(diffUsers));
-
-        users.clear();
-        assertTrue(users.isEmpty());
-
+        //remove the first user object
+        users.remove(user2);
+        assertEquals("user1", users.get(0).getUsername());
     }
 }
-
-
