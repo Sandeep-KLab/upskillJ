@@ -33,4 +33,16 @@ public class UserTest {
         assertEquals("PaZZwor6",user.getPassword(),"setter password expected");
     }
 
+    @Test
+    public void getUrl(){
+        User user = new User();
+        System.out.println(user.getUrl());
+    }
+
+    @Test
+    public void aUserHasNormalPermissions(){
+        User auser = new User();
+        assertEquals("Normal", auser.getPermission());
+    }
+
 }
